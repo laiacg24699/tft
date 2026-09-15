@@ -1,0 +1,6 @@
+cyvcf2
+joblib
+pandas
+scikit-learn
+myariant
+fastapi

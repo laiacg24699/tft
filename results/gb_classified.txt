@@ -1,0 +1,59 @@
+ReferenceAllele             hgvs_id   CADD gnomAD_AF  REVEL PhyloP   ClinicalSignificance
+              T   chr7:g.6026775T>C  0.135  0.872378  0.161    2.9                 Benign
+              G   chr7:g.6026942G>T  0.002  0.057419  0.101 -1.656                 Benign
+              G   chr7:g.6036980G>C  7.819  0.820576   <NA> -3.828 Uncertain significance
+              C  chr7:g.20042353C>T  18.26      <NA>   <NA>  2.107             Pathogenic
+              G  chr7:g.20042358G>A  18.16  0.000032   <NA>    0.6             Pathogenic
+              C  chr7:g.20042363C>T  18.76      <NA>   <NA>  0.252 Uncertain significance
+              C  chr7:g.20042381C>T  18.34      <NA>   <NA>  0.527 Uncertain significance
+              C  chr7:g.20042392C>T  19.53  0.000192   <NA>  3.188             Pathogenic
+              G  chr7:g.20042393G>A  17.06      <NA>   <NA> -0.097 Uncertain significance
+              C  chr7:g.20042421C>T  18.09  0.000032   <NA>  0.403 Uncertain significance
+              G  chr7:g.20042422G>A  16.55  0.000032   <NA>    1.8             Pathogenic
+              A  chr7:g.20042425A>G   15.6      <NA>   <NA>   2.99             Pathogenic
+              T  chr7:g.20042426T>C  15.14  0.000129   <NA>  0.198 Uncertain significance
+              C  chr7:g.20042481C>T  15.54  0.000033   <NA>  1.193             Pathogenic
+              G  chr7:g.20042482G>A  16.11   0.00056   <NA>  0.775      Likely pathogenic
+              A  chr7:g.20042488A>G  16.42      <NA>   <NA>   2.99             Pathogenic
+              A  chr7:g.53854853A>T   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
+              G  chr7:g.53854901G>T  1.886      <NA>   <NA>  0.822             Pathogenic
+              G  chr7:g.55229255G>A  0.047  0.231912  0.005  -1.14                 Benign
+              G  chr7:g.55249063G>A  17.57  0.502905   <NA>  3.245             Pathogenic
+              T  chr7:g.55266417T>C  3.658   0.89182   <NA> -2.172 Uncertain significance
+              T  chr7:g.61083456T>G   <NA>  0.010139   <NA>   <NA>          Likely benign
+              C  chr7:g.61083478C>T   <NA>  0.000983   <NA>   <NA>          Likely benign
+              A  chr7:g.61739610A>G   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
+              T  chr7:g.61969011T>A   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
+              C  chr7:g.61969050C>T   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
+              A  chr7:g.61969180A>T   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
+              A  chr7:g.72483668A>G  1.134  0.992713   <NA>  0.466 Uncertain significance
+              G chr7:g.117188682G>T  0.034  0.106051   <NA> -1.433 Uncertain significance
+              C chr7:g.117188736C>A  0.204  0.307388   0.39 -0.711                 Benign
+              T chr7:g.117188739T>C  0.057       0.0   <NA> -1.156 Uncertain significance
+              C chr7:g.117188763C>T  10.07       0.0   <NA> -0.497 Uncertain significance
+              G chr7:g.117188850G>T  12.71  0.140864   <NA>  -2.53 Uncertain significance
+              G chr7:g.117188877G>T   28.2  0.005579  0.938  2.615                 Benign
+              G chr7:g.117188889G>A  2.307  0.000607   <NA>  -0.11 Uncertain significance
+              G chr7:g.117188918G>A  4.964  0.003736   <NA>  1.485             Pathogenic
+              C chr7:g.135129228C>G  6.172      <NA>   <NA> -0.025 Uncertain significance
+              A chr7:g.135129234A>G  0.856      <NA>   <NA>  -0.96 Uncertain significance
+              A chr7:g.135129241A>T  3.524      <NA>   <NA>  0.227 Uncertain significance
+              T chr7:g.135129248T>C  0.314      <NA>   <NA> -0.993 Uncertain significance
+              T chr7:g.135129264T>C  0.489      <NA>   <NA> -1.385 Uncertain significance
+              T chr7:g.135129288T>C   2.02      <NA>   <NA>   0.37 Uncertain significance
+              A chr7:g.135129329A>G  2.054      <NA>   <NA>  0.087 Uncertain significance
+              A chr7:g.135129338A>G  1.885      <NA>   <NA> -1.455 Uncertain significance
+              T chr7:g.135129369T>C  2.998      <NA>   <NA>  0.194 Uncertain significance
+              T chr7:g.135129374T>C  0.931      <NA>   <NA>  0.062 Uncertain significance
+              A chr7:g.135129386A>G  2.738      <NA>   <NA> -0.432 Uncertain significance
+              T chr7:g.135129414T>G  6.014      <NA>   <NA>  0.533             Pathogenic
+              T chr7:g.135129430T>C  10.87      <NA>   <NA>  2.814             Pathogenic
+              G chr7:g.135129451G>A  11.15      <NA>   <NA>  2.754             Pathogenic
+              A chr7:g.135129505A>C  2.937      <NA>   <NA>  0.232 Uncertain significance
+              C chr7:g.135129559C>T  2.223      <NA>   <NA> -1.543 Uncertain significance
+              C chr7:g.135129591C>T  5.068      <NA>   <NA>  0.595             Pathogenic
+              G chr7:g.135129609G>A  10.94      <NA>   <NA>  2.225             Pathogenic
+              G chr7:g.135129688G>T   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
+              A chr7:g.135129694A>C   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
+              C chr7:g.135129707C>T   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
+              A chr7:g.135129715A>T   <NA>      <NA>   <NA>   <NA>      Likely pathogenic
