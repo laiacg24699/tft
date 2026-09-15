@@ -35,13 +35,13 @@ ml = machine_learning()
 vcf_reader = vcf()
 ########################################################
 # #GENERAR MODELOS:
-# # Generar archio filterin.csv a partir de archio .txt.gz
-#  ft.save_df(input_file, filter_file)
+# Generar archio filterin.csv a partir de archio .txt.gz
+ft.save_df(input_file, filter_file)
 # Generar archivo features.csv añadiendo datos consultados en MyVariant a filtering.csv:
-# feat.save_df(filter_file, features_file, 'myvariant')
-# #Generar archivos de modelo:
-# ml.save_model(features_file, 'random_forest', rf_model_file)
-# ml.save_model(features_file, 'gradient_boosting', gb_model_file)
+feat.save_df(filter_file, features_file, 'myvariant')
+# Generar archivos de modelo:
+ml.save_model(features_file, 'random_forest', rf_model_file)
+ml.save_model(features_file, 'gradient_boosting', gb_model_file)
 ########################################################
 #CLASIFICAR DATOS:
 #Leer archio vcf:
