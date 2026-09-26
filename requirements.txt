@@ -2,5 +2,6 @@ cyvcf2
 joblib
 pandas
 scikit-learn
-myariant
+myvariant
 fastapi
+requests

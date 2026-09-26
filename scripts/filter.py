@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 class filter:
-    # Filtros
+    # CONFIGURACIÓN
     acmg_classes = [
         "Pathogenic",
         "Likely pathogenic",
@@ -22,19 +22,19 @@ class filter:
     ]
     invalid_values = ["-", ".", ""]
     invalid_values_vcf = ["-", ".", "", "na"]
-
     chunksize = 10000
-
     n_per_class = 10000
-
+    ################################################
+    # Funciones:
+    # APLICA FILTROS
     def clean(self, chunk):
         #Filtrar variantes dejando solo aquellas cuya ClinicalSignificance sea benigna, probablemente benigna, de significado incierto, probablemente patogénica o patogénica. 
         mask_acmg = chunk["ClinicalSignificance"].isin(self.acmg_classes)
-        #Filtrar dejando solo variantes que sean de nucleótido simple:
+        #Filtrar dejando solo variantes que sean SNV:
         mask_type = chunk["Type"].isin(self.valid_types)
-        #CFiltrar variantes dejando solo aquellas que estén en assembly GRCh38:
+        #Filtrar variantes dejando solo aquellas que estén en assembly GRCh38:
         mask_assembly = chunk["Assembly"] == "GRCh38"
-        #Filtrar variantes cuyos alelos de referencia y alternatio, inicio y final, o cromosoma sean nulos.
+        #Filtrar variantes cuyos alelos de referencia y alternativo, inicio y final, o cromosoma sean nulos.
         mask_not_null = chunk[self.required_columns].notna().all(axis=1)
         #Filtrar variantes con posiciones VCF, alelos de referencia VCF o alelos alternaticos VCF con valores nulos, o bien iguales a "-", ".", "" o "na".
         mask_valid_alleles = (
@@ -73,9 +73,9 @@ class filter:
             mask_valid_values &
             mask_coordinates
         )
-
+    # ELIMINA VARIANTES CON DATOS CONFLICTIOS
     def consolidation(self, df):
-        #Agrupar filas del dataframe por AlleleId, seleccionar la columna "ClinicalSignificance" de cada alelo y contar cuantos alores distintos hay.
+        #Agrupar filas del dataframe por AlleleId, seleccionar la columna "ClinicalSignificance" de cada alelo y contar cuantos valores distintos hay.
         n_classes = (
             df
             .groupby("#AlleleID")["ClinicalSignificance"]
@@ -93,9 +93,9 @@ class filter:
         consolidated_df = consolidated_df.drop_duplicates(
             subset="#AlleleID"
         ).reset_index(drop=True)
-        # Deolver dataframe filtrado:
+        # Devolver dataframe filtrado:
         return consolidated_df
-
+    # DEVUELVE UN DATAFRAME CON LAS VARIANTES AGRUPADAS POR CLÍNICAL SIGNIFICANCE Y CON NÚMERO ESPECIFICADO DE VARIANTES EN CADA GRUPO
     def prepare_df(self, df):
         return (
             df
@@ -106,8 +106,8 @@ class filter:
             )
             .reset_index(drop=True) #Resetear los índices del dataframe para el nuevo dataframe obtenido, que incorpora las variantes seleccionadas anteriormente de cada grupo.
         )
-
-    def get_filtered_df(self, input_file):
+    # OBTIENE EL DATAFRAME FILTRADO LISTO PARA GUARDAR
+    def get_consolidated_dataframe(self, input_file):
         # Crear lista de datos filtrados:
         filtered_chunks = []
         # Leer archivo por tramos:
@@ -123,14 +123,13 @@ class filter:
             filtered_chunks,
             ignore_index=True
         )
-
         # Aplicar la función de consolidación
         consolidated_df = self.consolidation(filtered_df)
-
         return self.prepare_df(consolidated_df)
-
-    def save_df(self, input_file, csv_file):
+    #################################################
+    # Función principal:
+    def filter_data(self, input_file, csv_file):
         #Obtener dataframe filtrado:
-        filtered_df = self.get_filtered_df(input_file)
+        consolidated_df = self.get_consolidated_dataframe(input_file)
         #guardar dataframe filtrado. 
-        filtered_df.to_csv(csv_file, index=False)
+        consolidated_df.to_csv(csv_file, index=False)

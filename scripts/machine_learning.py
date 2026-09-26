@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
 from sklearn.pipeline import Pipeline
@@ -12,6 +13,7 @@ from sklearn.metrics import (
 )
 
 class machine_learning:
+    # CONFIGURACIÓN
     # Columnas con las variables de entrada del modelo:
     feature_columns = [
         "CADD",
@@ -19,7 +21,20 @@ class machine_learning:
         "REVEL",
         "PhyloP"
     ]
-    def create_model(self, machinelearning_df, classifier):
+    #################################################
+    # Funciones:
+    # GUARDAR DATOS DEL MODELO
+    def save_model_info(self, accuracy, x_report, c_matrix, model_info_file):
+        # Limpiar contenido del archivo txt:
+        open(model_info_file, 'w').close()
+        #Ir guardando nueva información al archio txt:
+        with open(model_info_file, 'a') as f:
+            f.write('Classification report:\n')
+            f.write(x_report)
+            f.write('\nConfusion matrix:\n')
+            f.write(np.array_str(c_matrix))
+    # CREAR MODELO DE MACHINE LEARNING
+    def create_model(self, machinelearning_df, classifier, model_info_file):
         # Seleccionar variables de entrada que se usaran para entrenar el modelo:
         X = machinelearning_df[self.feature_columns]
         # Seleccionar ariable objetivo que deberá predecir el modelo:
@@ -53,65 +68,33 @@ class machine_learning:
         model.fit(X_train, y_train)
         # Predecir valores objetivo a partir de las columnas de variable de entrada de los datos de prueba:
         y_pred = model.predict(X_test)
-        # Comparar valores objetios predichos con los valores objetivo de los datos de prueba para obtener la precisión global del modelo:
-        accuracy = accuracy_score(y_test, y_pred)
-        print("Accuracy:", accuracy)
+        self.save_model_info(accuracy_score(y_test, y_pred), classification_report(y_test, y_pred, digits=4), confusion_matrix(y_test, y_pred), model_info_file)
         # Generar las métricas:
         # Presición: para cada clase, el porcentaje de elementos predecidos en los resultados que realmente pertenecian a esa clase.
         # Recall: para todas las variantes de cada clase de los datos de entrada, el porcentaje de cuantas ha identificado correctamente.
         # F1-score: F1=2×precision×recall​/(precision+recall)
-        # Support: para cada clase, el número real de variantes que pertenecían a esa clase. 
-        print("\nClassification report:")
-        print(classification_report(y_test, y_pred))
-        # Generar matriz de confusión (indica clases que confunde el modelo): 
-        print("\nConfusion matrix:")
-        print(confusion_matrix(y_test, y_pred))
-
-        #Report obtenido:
-        # accuracy: 0.5606
-
-        # Classification report:
-        #                         precision    recall  f1-score   support
-
-        #                 Benign       0.91      0.83      0.87      2000
-        #         Likely benign       0.77      0.47      0.59      2000
-        #     Likely pathogenic       0.32      0.77      0.46      2000
-        #             Pathogenic       0.67      0.38      0.49      2000
-        # Uncertain significance       0.64      0.35      0.45      2000
-
-        #             accuracy                           0.56     10000
-        #             macro avg       0.66      0.56      0.57     10000
-        #         weighted avg       0.66      0.56      0.57     10000
-
-
-        # Confusion matrix:
-        # [[1668  135  114    4   79]
-        # [ 135  948  803    7  107]
-        # [   7   54 1531  295  113]
-        # [   2   29 1117  764   88]
-        # [  17   65 1147   76  695]]
-
-
         # Devolver modelo entrenado:
         return model
-
-    def save_model(self, input_file, classifier, model_file):
+    #################################################
+    # Funciones principales
+    def save_model(self, input_file, classifier, model_file, model_info_file):
         # Leer dataframe de un archio csv:
         df = pd.read_csv(input_file, sep=",",low_memory=False)
         # Entrenar y generar el modelo:
-        model = self.create_model(df, classifier)
+        model = self.create_model(df, classifier, model_info_file)
         # Guardar modelo como archio joblib.
         joblib.dump(
             model,
             model_file
         )
 
-    def classify_variants(self, new_features, classifier):
+    def classify_variants(self, new_features, model_file, classifier):
         # Si se selecciona el clasificador "random_forest", se carga el modelo de random forest generado anteriormente:
         if classifier == 'random_forest':
-            model = joblib.load(self.rf_model_file)
+            model = joblib.load(model_file)
         # Si no se selecciona el clasificador "random_forest", se carga el modelo de gradient boosting generado anteriormente:
         else:
-            model = joblib.load(self.gb_model_file)
+            model = joblib.load(model_file)
+
         # Usar modelo seleccionado para obtener el "ClinicalSignificance" de cada variante de la lista "new_features". Cada elemento de esta lista corresponde a una variante, y es una lista que contiene cada uno de los valores de las columnas de entrada del modelo:
         return model.predict(new_features)

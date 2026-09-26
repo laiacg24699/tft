@@ -1,0 +1,19 @@
+Classification report:
+                        precision    recall  f1-score   support
+
+                Benign     0.9180    0.8450    0.8800      2000
+         Likely benign     0.7804    0.8370    0.8077      2000
+     Likely pathogenic     0.5311    0.6185    0.5715      2000
+            Pathogenic     0.6831    0.5550    0.6124      2000
+Uncertain significance     0.6510    0.6705    0.6606      2000
+
+              accuracy                         0.7052     10000
+             macro avg     0.7127    0.7052    0.7064     10000
+          weighted avg     0.7127    0.7052    0.7064     10000
+
+Confusion matrix:
+[[1690  192    8    0  110]
+ [ 132 1674    5    1  188]
+ [   1   19 1237  474  269]
+ [   1   11  726 1110  152]
+ [  17  249  353   40 1341]]
