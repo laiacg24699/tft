@@ -15,6 +15,7 @@ Una vez entrenados, los modelos pueden utilizarse para clasificar variantes gen�
 
 El repositorio se organiza en diferentes carpetas según la función de los archivos dentro del proyecto:
 
+```text
 .
 ├── MLModelCreator.py
 ├── README.md
@@ -46,6 +47,7 @@ El repositorio se organiza en diferentes carpetas según la función de los arch
 │   ├── machine_learning.py
 │   └── vcf_reader.py
 └── requirements.txt
+```
 
 ## Datos
 
